@@ -82,7 +82,7 @@ services:
 
 ## Your tools, in any folder
 
-`php`, `composer`, `node`, `npm`, `npx`, `mysql` and `mysqldump` use the version your project asks for, and your default version elsewhere. Inside a running project, `mysql` connects to that project's database by itself.
+`php`, `composer`, `node`, `npm`, `npx`, `mysql`, `mysqldump` and `redis-cli` use the version your project asks for, and your default version elsewhere. Inside a running project, `mysql` and `redis-cli` connect to that project's services by themselves.
 
 Add the folder Djoser tells you about to `PATH` once. Djoser never edits `PATH` for its tools.
 
@@ -94,9 +94,10 @@ Add the folder Djoser tells you about to `PATH` once. Djoser never edits `PATH` 
 | PHP extensions | redis, imagick, memcached, xdebug, sqlsrv, pdo_sqlsrv, apcu, mongodb, amqp, and what ships with PHP |
 | Composer, Node.js | Any folder, per-project versions |
 | MySQL | 8.0, 8.4, 9.7 |
+| Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | Sites | Caddy, HTTPS on `*.localhost` |
 
-MariaDB, PostgreSQL, Redis, MongoDB, RustFS and Cloudflare tunnels are planned.
+Valkey, MariaDB, PostgreSQL, MongoDB, RustFS and Cloudflare tunnels are planned.
 
 ## This repository
 
