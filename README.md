@@ -1,85 +1,60 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="Djoser" width="128" height="128">
-
-# Djoser
+<img src="assets/overview.webp" alt="Djoser: from config to running services" width="760">
 
 **A native, Windows-first developer environment manager for PHP and Laravel.**
 
-Per-project PHP runtimes, local HTTPS sites and services, without Docker, WSL or touching the PHP already on your machine.
+Per-project PHP, local HTTPS sites, MySQL and Redis, without Docker, WSL or touching the PHP already on your machine.
 
 ![Platform](https://img.shields.io/badge/platform-Windows%20x64-0078D4)
 ![C++](https://img.shields.io/badge/C%2B%2B-23-00599C)
 [![Release](https://img.shields.io/github/v/release/Egyptus/Djoser?include_prereleases)](https://github.com/Egyptus/Djoser/releases)
 
-[Download for Windows](https://github.com/Egyptus/Djoser/releases/latest)
+### [Download for Windows](https://github.com/Egyptus/Djoser/releases/latest)
 
 </div>
 
 > Djoser is at an early stage. Expect changes between versions.
 
-## Quick start
+## Why Djoser
 
-Install Djoser from the [latest release](https://github.com/Egyptus/Djoser/releases/latest). It installs for your user only and needs no administrator rights. Then, inside your project:
+- **One file per project.** `djoser.yaml` says what a project needs, and `djoser up` makes it true.
+- **Versions side by side.** Every project uses its own PHP, MySQL and Redis versions.
+- **Real HTTPS.** Each project gets its own `https://name.localhost` address.
+- **No administrator rights.** Djoser installs for your user only, and everything it downloads stays in one folder.
+- **Your data stays.** `down`, `remove` and `uninstall` never delete a database.
 
-```powershell
-djoser init
-djoser up
-```
+## Install
 
-`init` asks a few questions and writes a `djoser.yaml`. `up` downloads what the project needs, starts it, and prints its address:
+Download the installer from the [latest release](https://github.com/Egyptus/Djoser/releases/latest) and run it. It offers two options:
 
-```text
-shop is up on PHP 8.5.12 (6 workers, ports 19000-19005)
-  https://shop.localhost
-```
+| Option | Default | What it does |
+|---|---|---|
+| Add Djoser to `PATH` | On | `djoser` works in any new terminal |
+| Add the tools to `PATH` | Off | `php`, `composer`, `node`, `mysql` and the others work in any new terminal. If another copy is already on `PATH`, the one listed first is used |
 
-## Describe a project
+The installer is not signed yet, so Windows or your antivirus may warn before running it. Choose **More info**, then **Run anyway**, and compare the file with the SHA-256 in the release notes.
 
-Everything a project needs lives in one file, so it starts the same way on any machine:
+To update, run the new installer. It stops Djoser first and keeps your projects and databases.
 
-```yaml
-name: shop
-domain: shop.localhost
-web-root: public
-services:
-  php:
-    version: 8.5.12
-    extensions: [redis, imagick, xdebug]
-  mysql: 8.4.13
-  node: 22.23.4
-```
+## Create a Laravel project
 
-Edit the file and run `djoser up` to apply it. `djoser status` shows what changed since the last `up`.
+This goes from nothing to a running site. To add Djoser to a project you already have, start at step 3 inside its folder.
 
-Databases are shared between projects by default, with one database per project, on `127.0.0.1` only. To give a project its own server and data folder:
-
-```yaml
-services:
-  mysql:
-    version: 8.4.13
-    data: D:/Data/shop-mysql
-```
-
-## A Laravel project, start to finish
-
-### 1. Get PHP and Composer
+### 1. Get PHP, Composer and Node.js
 
 ```powershell
 djoser install php 8.5
 djoser install composer latest
+djoser install node 22
 ```
-
-The first version of each becomes your default. Djoser prints a folder to add to `PATH`; add it once, then open a new terminal so `php` and `composer` work anywhere.
 
 ### 2. Create the project
 
 ```powershell
-composer create-project laravel/laravel shop
+djoser composer create-project laravel/laravel shop
 cd shop
 ```
-
-For an existing project, just `cd` into its folder.
 
 ### 3. Describe it
 
@@ -97,9 +72,10 @@ services:
   php:
     version: 8.5
     extensions: [redis]
-  mysql: 8.4
+  mysql:
+    version: 8.4
+    database: shop
   redis: 8.4
-  node: 22.23.4
 ```
 
 `extensions: [redis]` is the PHP extension that talks to Redis. `redis: 8.4` is the Redis server itself. You need both.
@@ -110,19 +86,17 @@ services:
 djoser up
 ```
 
-The first run downloads everything and may take a few minutes. It ends with the address and the connection details:
+The first run downloads what is missing, starts it, and offers to trust the local certificate so browsers accept the site.
+
+<img src="assets/djoser-up.webp" alt="djoser up downloading PHP, MySQL and Redis" width="720">
+
+It ends with the address and the connection details:
 
 ```text
 shop is up on PHP 8.5.12 (6 workers, ports 19000-19005)
   https://shop.localhost
 Note: mysql on 127.0.0.1:3306, database shop, user root, no password
 Note: redis on 127.0.0.1:6379 (community Windows build)
-```
-
-Once per machine, trust the local certificate so browsers accept the site:
-
-```powershell
-djoser trust
 ```
 
 ### 5. Connect Laravel
@@ -146,14 +120,14 @@ QUEUE_CONNECTION=redis
 SESSION_DRIVER=redis
 ```
 
-The database is named after the project, with `-` turned into `_`. To choose the name, add `database: my_db` under `mysql` in `djoser.yaml`. Projects using the same Redis version share one server, so give each project its own `REDIS_PREFIX`.
+Projects using the same Redis version share one server, so give each project its own `REDIS_PREFIX`.
 
 ### 6. Prepare the app
 
 ```powershell
 djoser artisan migrate
-npm install
-npm run build
+djoser npm install
+djoser npm run build
 ```
 
 Open `https://shop.localhost`.
@@ -165,51 +139,87 @@ Each of these stays open, so give it its own terminal:
 ```powershell
 djoser artisan queue:work
 djoser artisan schedule:work
-npm run dev
+djoser npm run dev
 ```
 
-### Day to day
+## See what is running
 
-| To | Run |
+```powershell
+djoser status
+```
+
+<img src="assets/djoser-status.webp" alt="djoser status listing each service, its state, port and database" width="720">
+
+`djoser status` also shows what changed in `djoser.yaml` since the last `up`. `djoser ps` lists every running project.
+
+## Describe a project
+
+<img src="assets/djoser-yaml.webp" alt="A djoser.yaml file" width="560">
+
+Edit the file and run `djoser up` to apply it. A version can be a line such as `8.5` or an exact one such as `8.5.12`.
+
+| Key under a service | What it does |
 |---|---|
-| Stop or start the project | `djoser down`, `djoser up` |
-| See each service, its state, port and database, and what changed in `djoser.yaml` | `djoser status` |
-| Run any Artisan command | `djoser artisan <command>` |
-| Open the project's database | `mysql` |
-| Open it in HeidiSQL (downloaded the first time) | `djoser tool db` |
-| Back up the database | `mysqldump --result-file=backup.sql` |
-| Open the project's Redis | `redis-cli` |
-| Add a PHP extension | `djoser install php-ext imagick`, then `djoser up` |
-| Change PHP | `djoser use php 8.4`, then `djoser up` |
-| Run a tool from another folder | `djoser exec shop mysql` |
-| See every running project | `djoser ps` |
-| Forget the project; files and data stay | `djoser remove` |
+| `version` | The version to run |
+| `extensions` | PHP extensions, such as `[redis, imagick, xdebug]` |
+| `database` | The database name; by default the project's name, with `-` turned into `_` |
+| `port` | Run a separate server for this project on this port |
+| `data` | Run a separate server with its data in this folder, which must exist |
+| `dedicated: true` | Run a separate server for this project |
+
+Servers are shared between projects by default, with one database per project, on `127.0.0.1` only. A separate server starts with empty data.
+
+## Open the database
+
+```powershell
+djoser tool db
+```
+
+Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql` and `djoser redis-cli` connect to the project's services by themselves.
+
+## Share your site
+
+```powershell
+djoser share
+```
+
+Prints a temporary public address through Cloudflare, with no account needed, while the command runs. Anyone with the address can open the site. Press Ctrl+C to stop.
+
+For Laravel, set `APP_URL` to that address and trust proxies, or styles and links may break.
 
 ## Commands
 
-| Command | What it does |
+| Project | |
 |---|---|
-| `djoser init` | Create `djoser.yaml` for a project |
+| `djoser init` | Create `djoser.yaml` |
 | `djoser up` / `down` | Start or stop the project |
+| `djoser status` | Its services and pending changes |
 | `djoser remove` | Stop it and forget it; files and data stay |
-| `djoser status` | This project's services, their state, ports and database, and pending changes |
 | `djoser ps` | Every running project |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
-| `djoser install <service> <version>` | Download a version |
-| `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
+| `djoser tool db` | Open HeidiSQL on the project's database |
+| `djoser share` | A temporary public address, until Ctrl+C |
+
+| Tools | |
+|---|---|
+| `djoser php`, `composer`, `artisan` | Run with the project's PHP |
+| `djoser node`, `npm`, `npx` | Run with the project's Node.js |
+| `djoser mysql`, `mysqldump`, `redis-cli` | Connect to the project's services |
+
+| Versions | |
+|---|---|
 | `djoser list <service>` | What can be installed |
+| `djoser install <service> <version>` | Download a version |
+| `djoser install heidisql`, `cloudflared` | Download a helper program ahead of time |
+| `djoser install php-ext <name>` | Add a PHP extension to this project |
+| `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
 | `djoser runtimes` | What is installed |
 | `djoser uninstall <service> <version>` | Remove a version; databases stay |
-| `djoser install php-ext <name>` | Add a PHP extension to this project |
-| `djoser tool db` | Open HeidiSQL on this project's database |
+
+| Machine | |
+|---|---|
 | `djoser trust` | Trust the local certificate for HTTPS |
 | `djoser doctor` | Check this machine and explain how to fix problems |
-
-## Your tools, in any folder
-
-`php`, `composer`, `node`, `npm`, `npx`, `mysql`, `mysqldump` and `redis-cli` use the version your project asks for, and your default version elsewhere. Inside a running project, `mysql` and `redis-cli` connect to that project's services by themselves.
-
-The installer can add their folder to `PATH` for you, or add the folder Djoser tells you about once. Otherwise Djoser never edits `PATH` for its tools.
 
 ## What runs today
 
@@ -217,13 +227,20 @@ The installer can add their folder to `PATH` for you, or add the folder Djoser t
 |---|---|
 | PHP | Official builds, one pool per version and set of extensions |
 | PHP extensions | redis, imagick, memcached, xdebug, sqlsrv, pdo_sqlsrv, apcu, mongodb, amqp, and what ships with PHP |
-| Composer, Node.js | Any folder, per-project versions |
+| Composer, Node.js | Per-project versions, in any folder |
 | MySQL | 8.0, 8.4, 9.7 |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | Sites | Caddy, HTTPS on `*.localhost` |
+| Helpers | HeidiSQL, cloudflared |
 
-Valkey, MariaDB, PostgreSQL, MongoDB, RustFS and Cloudflare tunnels are planned.
+Valkey, MariaDB, PostgreSQL, MongoDB and RustFS are planned.
 
 ## This repository
 
 It holds the installer in [Releases](https://github.com/Egyptus/Djoser/releases) and the tables in [`catalog/`](catalog), which list the versions Djoser may download and the SHA-256 of each file. Djoser reads them so that new versions can be added without a new release.
+
+<div align="center">
+
+<img src="assets/banner.webp" alt="The Djoser banner" width="560">
+
+</div>
