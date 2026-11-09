@@ -146,7 +146,7 @@ QUEUE_CONNECTION=redis
 SESSION_DRIVER=redis
 ```
 
-The database is named after the project, with `-` turned into `_`. Projects using the same Redis version share one server, so give each project its own `REDIS_PREFIX`.
+The database is named after the project, with `-` turned into `_`. To choose the name, add `database: my_db` under `mysql` in `djoser.yaml`. Projects using the same Redis version share one server, so give each project its own `REDIS_PREFIX`.
 
 ### 6. Prepare the app
 
@@ -173,7 +173,7 @@ npm run dev
 | To | Run |
 |---|---|
 | Stop or start the project | `djoser down`, `djoser up` |
-| See what changed in `djoser.yaml` | `djoser status` |
+| See each service, its state, port and database, and what changed in `djoser.yaml` | `djoser status` |
 | Run any Artisan command | `djoser artisan <command>` |
 | Open the project's database | `mysql` |
 | Back up the database | `mysqldump --result-file=backup.sql` |
@@ -191,7 +191,7 @@ npm run dev
 | `djoser init` | Create `djoser.yaml` for a project |
 | `djoser up` / `down` | Start or stop the project |
 | `djoser remove` | Stop it and forget it; files and data stay |
-| `djoser status` | This project's state and pending changes |
+| `djoser status` | This project's services, their state, ports and database, and pending changes |
 | `djoser ps` | Every running project |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser install <service> <version>` | Download a version |
