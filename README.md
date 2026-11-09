@@ -176,6 +176,7 @@ npm run dev
 | See each service, its state, port and database, and what changed in `djoser.yaml` | `djoser status` |
 | Run any Artisan command | `djoser artisan <command>` |
 | Open the project's database | `mysql` |
+| Open it in HeidiSQL (downloaded the first time) | `djoser tool db` |
 | Back up the database | `mysqldump --result-file=backup.sql` |
 | Open the project's Redis | `redis-cli` |
 | Add a PHP extension | `djoser install php-ext imagick`, then `djoser up` |
@@ -200,6 +201,7 @@ npm run dev
 | `djoser runtimes` | What is installed |
 | `djoser uninstall <service> <version>` | Remove a version; databases stay |
 | `djoser install php-ext <name>` | Add a PHP extension to this project |
+| `djoser tool db` | Open HeidiSQL on this project's database |
 | `djoser trust` | Trust the local certificate for HTTPS |
 | `djoser doctor` | Check this machine and explain how to fix problems |
 
@@ -207,7 +209,7 @@ npm run dev
 
 `php`, `composer`, `node`, `npm`, `npx`, `mysql`, `mysqldump` and `redis-cli` use the version your project asks for, and your default version elsewhere. Inside a running project, `mysql` and `redis-cli` connect to that project's services by themselves.
 
-Add the folder Djoser tells you about to `PATH` once. Djoser never edits `PATH` for its tools.
+The installer can add their folder to `PATH` for you, or add the folder Djoser tells you about once. Otherwise Djoser never edits `PATH` for its tools.
 
 ## What runs today
 
