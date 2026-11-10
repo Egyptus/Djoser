@@ -62,7 +62,7 @@ cd shop
 djoser init --name shop --domain shop.localhost --root public --php 8.5 -y
 ```
 
-Leave out the options and `init` asks for each one. Then open `djoser.yaml` and list what the project needs:
+Leave out the options and `init` asks for each one. With PHP it also writes a few PHP settings you can change. Then open `djoser.yaml` and add what the project needs:
 
 ```yaml
 name: shop
@@ -72,6 +72,11 @@ services:
   php:
     version: 8.5
     extensions: [redis]
+    ini:
+      memory_limit: 512M
+      upload_max_filesize: 64M
+      post_max_size: 64M
+      max_execution_time: 120
   mysql:
     version: 8.4
     database: shop
@@ -166,6 +171,16 @@ Edit the file and run `djoser up` to apply it. A version can be a line such as `
 | `port` | Run a separate server for this project on this port |
 | `data` | Run a separate server with its data in this folder, which must exist |
 | `dedicated: true` | Run a separate server for this project |
+| `ini` | PHP settings for this project, one per line, such as `memory_limit: 1G` |
+
+To change PHP settings from the terminal:
+
+```powershell
+djoser config php memory_limit=1G,upload_max_filesize=200M
+djoser config php
+```
+
+The first writes them to `djoser.yaml` and restarts the project's PHP if it is running; an empty value, such as `memory_limit=`, removes one. The second lists them.
 
 Servers are shared between projects by default, with one database per project, on `127.0.0.1` only. A separate server starts with empty data.
 
@@ -194,6 +209,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser init` | Create `djoser.yaml` |
 | `djoser up` / `down` | Start or stop the project |
 | `djoser status` | Its services and pending changes |
+| `djoser config php key=value,...` | Show or change the project's PHP settings |
 | `djoser remove` | Stop it and forget it; files and data stay |
 | `djoser ps` | Every running project |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
