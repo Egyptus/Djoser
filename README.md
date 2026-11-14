@@ -106,7 +106,22 @@ Note: redis on 127.0.0.1:6379 (community Windows build)
 
 ### 5. Connect Laravel
 
-Djoser does not edit `.env`. Copy the values `up` printed:
+Let Djoser check `.env` against what it runs:
+
+```powershell
+djoser env sync
+```
+
+Each difference shows the line you have, commented out in red, and the line Djoser expects in green under it, so you can copy either:
+
+```text
+#DB_CONNECTION=sqlite
+DB_CONNECTION=mysql
+#DB_PORT (missing)
+DB_PORT=3306
+```
+
+It then asks `Update .env? [y/N]`. Only `y` or `yes` changes the file, and only those lines. Or set the values yourself:
 
 ```env
 DB_CONNECTION=mysql
@@ -232,6 +247,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser up` / `down` | Start or stop the project |
 | `djoser status` | Its services and pending changes |
 | `djoser config php key=value,...` | Show or change the project's PHP settings |
+| `djoser env sync` | Compare `.env` with what Djoser runs, and update it after a typed yes |
 | `djoser remove` | Stop it and forget it; files and data stay |
 | `djoser ps` | Running projects; `-a` adds stopped ones |
 | `djoser projects` | Every project Djoser knows, with its folder |
