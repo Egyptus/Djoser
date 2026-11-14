@@ -236,7 +236,7 @@ Every message your app sends lands in an inbox at `http://127.0.0.1:8025` instea
 djoser tool db
 ```
 
-Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql` and `djoser redis-cli` connect to the project's services by themselves.
+Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql`, `djoser mariadb` and `djoser redis-cli` connect to the project's services by themselves.
 
 ## Share your site
 
@@ -268,7 +268,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 |---|---|
 | `djoser php`, `composer`, `artisan` | Run with the project's PHP |
 | `djoser node`, `npm`, `npx` | Run with the project's Node.js |
-| `djoser mysql`, `mysqldump`, `redis-cli` | Connect to the project's services |
+| `djoser mysql`, `mysqldump`, `mariadb`, `mariadb-dump`, `redis-cli` | Connect to the project's services |
 
 | Versions | |
 |---|---|
@@ -300,13 +300,14 @@ Run `djoser <command> --help` for every option.
 | PHP extensions | redis, imagick, memcached, xdebug, sqlsrv, pdo_sqlsrv, apcu, mongodb, amqp, and what ships with PHP |
 | Composer, Node.js | Per-project versions, in any folder |
 | MySQL | 8.0, 8.4, 9.7 |
+| MariaDB | 10.11, 11.4, 11.8, 12.3, 13.0 |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | RustFS (S3) | 1.0, with a web console and a bucket per project |
 | Mailpit | 1.33, catches the mail your app sends |
 | Sites | Caddy, HTTPS on `*.localhost` |
 | Helpers | HeidiSQL, cloudflared |
 
-MariaDB, PostgreSQL and MongoDB are planned.
+PostgreSQL and MongoDB are planned.
 
 ## This repository
 

@@ -25,6 +25,9 @@ $releases = [ordered]@{
         @{ version = '8.4.13'; url = 'https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.13-winx64.zip' }
         @{ version = '9.7.4'; url = 'https://cdn.mysql.com/Downloads/MySQL-9.7/mysql-9.7.4-winx64.zip' }
     )
+    mariadb = @('10.11.19', '11.4.13', '11.8.9', '12.3.3', '13.0.2') | ForEach-Object {
+        @{ version = $_; url = "https://archive.mariadb.org/mariadb-$_/winx64-packages/mariadb-$_-winx64.zip" }
+    }
     redis = @('7.2.16', '7.4.11', '8.4.7', '8.10.3') | ForEach-Object {
         @{ version = $_; url = "https://github.com/redis-windows/redis-windows/releases/download/$_/Redis-$_-Windows-x64-msys2.zip" }
     }

@@ -17,6 +17,30 @@
         }
       }
     },
+    "mariadb": {
+      "versions": {
+        "10.11.19": {
+          "url": "https://archive.mariadb.org/mariadb-10.11.19/winx64-packages/mariadb-10.11.19-winx64.zip",
+          "sha256": "398ea30e5036010bbebe01d2b1804280424dcc2626e36d8e95155c04d25a0490"
+        },
+        "11.4.13": {
+          "url": "https://archive.mariadb.org/mariadb-11.4.13/winx64-packages/mariadb-11.4.13-winx64.zip",
+          "sha256": "d62986d433eeebfde218560b276103831604a61e929e87f1a17f5aebd80257e2"
+        },
+        "11.8.9": {
+          "url": "https://archive.mariadb.org/mariadb-11.8.9/winx64-packages/mariadb-11.8.9-winx64.zip",
+          "sha256": "830c46727d9278eae212ae3eca44eeb9e71b2a68704e95f344a64fba7b1963f5"
+        },
+        "12.3.3": {
+          "url": "https://archive.mariadb.org/mariadb-12.3.3/winx64-packages/mariadb-12.3.3-winx64.zip",
+          "sha256": "4b5706b47148b47c8f36963c8352d1ddee37a1287b4690428f631a74b09b85a0"
+        },
+        "13.0.2": {
+          "url": "https://archive.mariadb.org/mariadb-13.0.2/winx64-packages/mariadb-13.0.2-winx64.zip",
+          "sha256": "ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74"
+        }
+      }
+    },
     "redis": {
       "versions": {
         "7.2.16": {
