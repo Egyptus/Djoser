@@ -28,6 +28,10 @@ $releases = [ordered]@{
     mariadb = @('10.11.19', '11.4.13', '11.8.9', '12.3.3', '13.0.2') | ForEach-Object {
         @{ version = $_; url = "https://archive.mariadb.org/mariadb-$_/winx64-packages/mariadb-$_-winx64.zip" }
     }
+    # EnterpriseDB publishes no checksum for these zips: the hash pinned here is of the first download.
+    postgres = @('15.20', '16.16', '17.12', '18.7') | ForEach-Object {
+        @{ version = $_; url = "https://get.enterprisedb.com/postgresql/postgresql-$_-1-windows-x64-binaries.zip" }
+    }
     redis = @('7.2.16', '7.4.11', '8.4.7', '8.10.3') | ForEach-Object {
         @{ version = $_; url = "https://github.com/redis-windows/redis-windows/releases/download/$_/Redis-$_-Windows-x64-msys2.zip" }
     }
