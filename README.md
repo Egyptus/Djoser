@@ -188,6 +188,7 @@ Edit the file and run `djoser up` to apply it. A version can be a line such as `
 | `data` | Run a separate server with its data in this folder, which must exist |
 | `dedicated: true` | Run a separate server for this project |
 | `ini` | PHP settings for this project, one per line, such as `memory_limit: 1G` |
+| `settings` | The server's own options, one per line; gives the project its own server |
 
 To change PHP settings from the terminal:
 
@@ -199,6 +200,128 @@ djoser config php
 The first writes them to `djoser.yaml` and restarts the project's PHP if it is running; an empty value, such as `memory_limit=`, removes one. The second lists them.
 
 Servers are shared between projects by default, with one database per project, on `127.0.0.1` only. A separate server starts with empty data.
+
+## Every option, service by service
+
+Each block shows every key Djoser reads, with the value it uses when the key is left out. You only write what you want to change; `mysql: 8.4` alone is enough. A key that has no effect where it is written is reported by `up`, and an unknown one is a warning.
+
+### The project
+
+```yaml
+name: shop                     # default: the folder's name
+domain: shop.localhost         # default: <name>.localhost
+web-root: public               # default: public for Laravel, else the folder holding index.php or index.html
+tls:                           # default: Djoser's local certificate
+  cert: certs/shop.pem         # your own certificate and key, relative to the project
+  key: certs/shop-key.pem
+```
+
+### php
+
+```yaml
+php:
+  version: 8.5                 # a line such as 8.5, or an exact 8.5.12
+  extensions: [redis, xdebug]  # default: none beyond what ships with PHP
+  ini:                         # default: PHP's own values; djoser init writes these four
+    memory_limit: 512M
+    upload_max_filesize: 64M
+    post_max_size: 64M
+    max_execution_time: 120
+```
+
+`ini` takes any `php.ini` setting except `extension`, `zend_extension`, `extension_dir`, `curl.cainfo` and `openssl.cafile`. Change it from the terminal with `djoser config php memory_limit=1G`.
+
+### node
+
+```yaml
+node: 22                       # a line such as 22, or an exact 22.23.4
+```
+
+### mysql and mariadb
+
+```yaml
+mysql:                         # or mariadb:
+  version: 8.4                 # mysql: 8.0, 8.4, 9.7   mariadb: 10.11, 11.4, 11.8, 12.3, 13.0
+  database: shop               # default: the project's name, - becomes _
+  port: 3306                   # default: shared server from 3306; setting it gives the project its own
+  data: D:/Data/shop-mysql     # default: <home>\data\mysql-8.4; the folder must exist
+  dedicated: true              # default: false
+  settings:                    # passed as --name=value; gives the project its own server
+    max_connections: 500
+    sql_mode: STRICT_TRANS_TABLES,NO_ZERO_DATE
+    innodb_buffer_pool_size: 512M
+    character_set_server: utf8mb4
+```
+
+User `root`, no password, `127.0.0.1` only. Djoser sets `datadir`, `port`, `bind_address`, `socket`, `console`, `mysqlx` and `no_defaults` itself.
+
+### postgres
+
+```yaml
+postgres:
+  version: 17                  # 15, 16, 17, 18
+  database: shop               # default: the project's name, - becomes _
+  port: 5432                   # default: shared server from 5432
+  data: D:/Data/shop-pg
+  dedicated: true
+  settings:                    # passed as -c name=value
+    max_connections: 200
+    shared_buffers: 256MB
+    work_mem: 16MB
+    log_min_duration_statement: 500
+```
+
+User `postgres`, no password, `127.0.0.1` only. Djoser sets `port`, `listen_addresses`, `data_directory` and `hba_file` itself.
+
+### redis
+
+```yaml
+redis:
+  version: 8.4                 # 7.2, 7.4, 8.4, 8.10
+  port: 6379                   # default: shared server from 6379
+  data: D:/Data/shop-redis
+  dedicated: true
+  settings:                    # passed as --name value
+    maxmemory: 256mb
+    maxmemory-policy: allkeys-lru
+    appendonly: "yes"
+```
+
+No password. Djoser sets `port`, `bind` and `dir` itself. Projects sharing a server share keys, so give each its own `REDIS_PREFIX`.
+
+### rustfs
+
+```yaml
+rustfs:
+  version: 1.0
+  bucket: shop                 # default: the project's name
+  port: 9000                   # default: shared server from 9000; the console takes the next free port
+  data: D:/Data/shop-s3
+  dedicated: true
+  settings:                    # passed as RUSTFS_<NAME> environment variables
+    access_key: rustfsadmin    # default key and secret: rustfsadmin
+    secret_key: rustfsadmin
+    region: us-east-1
+```
+
+Djoser sets `address`, `console_address`, `volumes` and `check_update` itself.
+
+### mailpit
+
+```yaml
+mailpit:
+  version: 1.33
+  port: 1025                   # SMTP; default: shared server from 1025, inbox from 8025
+  data: D:/Data/shop-mail
+  dedicated: true
+  settings:                    # passed as --name=value
+    max: 2000                  # messages kept; default 500
+    smtp-max-recipients: 100
+```
+
+Djoser sets `smtp`, `listen` and `database` itself.
+
+`settings` gives the project its own server, because one shared server cannot follow two projects' options; that server starts with empty data. Changing `settings` and running `djoser up` restarts it. Djoser does not check option names against each server's list: a misspelt one stops that server, and `djoser services` shows it failed.
 
 ## Store files in S3
 
