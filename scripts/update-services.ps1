@@ -38,6 +38,9 @@ $releases = [ordered]@{
     mongosh = @(
         @{ version = '2.14.2'; url = 'https://github.com/mongodb-js/mongosh/releases/download/v2.14.2/mongosh-2.14.2-win32-x64.zip' }
     )
+    'mongodb-tools' = @(
+        @{ version = '100.20.1'; url = 'https://fastdl.mongodb.org/tools/db/mongodb-database-tools-windows-x86_64-100.20.1.zip' }
+    )
     redis = @('7.2.16', '7.4.11', '8.4.7', '8.10.3') | ForEach-Object {
         @{ version = $_; url = "https://github.com/redis-windows/redis-windows/releases/download/$_/Redis-$_-Windows-x64-msys2.zip" }
     }

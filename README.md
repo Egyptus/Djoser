@@ -201,6 +201,8 @@ The first writes them to `djoser.yaml` and restarts the project's PHP if it is r
 
 Servers are shared between projects by default, with one database per project, on `127.0.0.1` only. A separate server starts with empty data.
 
+At the top of the file, `backups: D:/Backups/shop` sends this project's backups to that folder, relative to the project or absolute. By default they go to `Documents\Djoser\Backups\<project>`.
+
 ## Every option, service by service
 
 Each block shows every key Djoser reads, with the value it uses when the key is left out. You only write what you want to change; `mysql: 8.4` alone is enough. A key that has no effect where it is written is reported by `up`, and an unknown one is a warning.
@@ -377,6 +379,20 @@ djoser tool db
 
 Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql`, `djoser mariadb`, `djoser psql` and `djoser redis-cli` connect to the project's services by themselves.
 
+## Back up the database
+
+```powershell
+djoser db backup
+djoser db list
+djoser db restore
+```
+
+`backup` writes one file for each database in `djoser.yaml` (mysql, mariadb, postgres, mongodb), such as `my_shop-mysql-20261114-153005.sql`, to `Documents\Djoser\Backups\<project>`. They stay after Djoser is uninstalled, and Djoser never deletes them. The server must be running; `--service mysql` backs up only one.
+
+`restore` loads the newest backup of each database, or the file you name, such as `djoser db restore my_shop-mysql-20261114-153005.sql`. It first backs up what is there now (a file ending in `-before-restore`), shows what it will replace, and goes on only when you type `y`. Without a terminal it needs `-y`.
+
+`djoser uninstall` of a database version offers to back up the projects that use it first. MongoDB backups need the MongoDB Database Tools, which Djoser downloads the first time.
+
 ## Share your site
 
 ```powershell
@@ -401,6 +417,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser projects` | Every project Djoser knows, with its folder |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser tool db` | Open HeidiSQL on the project's database |
+| `djoser db backup` / `restore` / `list` | Back up the project's databases, restore one after a typed yes, list the backups |
 | `djoser share` | A temporary public address, until Ctrl+C |
 
 | Tools | |
@@ -415,11 +432,11 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser install <service> <version>` | Download a version, such as `php 8.5`, `mysql 8.4`, `redis 8.4`, `node 22` |
 | `djoser install composer latest` | Download Composer |
 | `djoser add php <folder>` | Use a PHP already on this machine, where it is |
-| `djoser install heidisql`, `cloudflared` | Download a helper program ahead of time |
+| `djoser install heidisql`, `cloudflared`, `mongosh`, `mongodb-tools` | Download a helper program ahead of time |
 | `djoser install php-ext <name>` | Add a PHP extension to this project |
 | `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
 | `djoser runtimes` | What is installed |
-| `djoser uninstall <service> <version>` | Remove a version; databases stay |
+| `djoser uninstall <service> <version>` | Remove a version, offering a backup first; databases stay |
 
 | Machine | |
 |---|---|
