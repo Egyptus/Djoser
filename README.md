@@ -231,6 +231,7 @@ Each block shows every key Djoser reads, with the value it uses when the key is 
 ```yaml
 name: shop                     # default: the folder's name
 domain: shop.localhost         # default: <name>.localhost
+aliases: [www, api]            # more subdomains of the domain; "*" serves any, for multi-tenant apps
 web-root: public               # default: public for Laravel, else the folder holding index.php or index.html
 tls:                           # default: Djoser's local certificate
   cert: certs/shop.pem         # your own certificate and key, relative to the project
@@ -397,6 +398,17 @@ djoser tool db
 ```
 
 Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql`, `djoser mariadb`, `djoser psql` and `djoser redis-cli` connect to the project's services by themselves.
+
+## More than one address
+
+```yaml
+domain: shop.localhost
+aliases: [www, api, "*"]
+```
+
+`djoser up` then serves `www.shop.localhost`, `api.shop.localhost` and, with `"*"`, any other subdomain such as `tenant1.shop.localhost`, all from the same project with their own local certificates. Laravel sees the name in the request, so subdomain routes work. `djoser up` and `djoser status` list every address.
+
+Names under `.localhost` open with no setup. Another domain, such as `shop.test`, needs a line in `C:\Windows\System32\drivers\etc\hosts`, added as administrator; `up` prints the line. Djoser does not edit that file, and `"*"` only works under `.localhost`.
 
 ## Run the project's scripts
 
