@@ -266,6 +266,8 @@ php:
 node: 22                       # a line such as 22, or an exact 22.23.4
 ```
 
+Without `node:`, Djoser reads the project's `.nvmrc`, then `.node-version`, as nvm and fnm do: `22`, `v22.11.0`, `lts/*`, `lts/iron` or `node`. A version they name that is not installed is an error that names the file; Djoser never runs another one instead. `djoser which node` says which version runs here and why.
+
 ### mysql and mariadb
 
 ```yaml
@@ -496,6 +498,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser install php-ext <name>` | Add a PHP extension to this project |
 | `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
 | `djoser runtimes` | What is installed |
+| `djoser which <tool>` | Which version a tool runs here, where it was chosen, and its path |
 | `djoser uninstall <service> <version>` | Remove a version, offering a backup first; databases stay |
 
 | Machine | |
