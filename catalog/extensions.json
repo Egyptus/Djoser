@@ -1,1 +1,239 @@
-{"schema":1,"extensions":{"redis":{"zend":false,"needs":"","builds":{"8.2":{"version":"6.3.0","url":"https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.2-nts-vs16-x64.zip","sha256":"b2b730b99b97352212b338c01f7dde577857e31c5f8e1d011ec2871e63f8f87c"},"8.3":{"version":"6.3.0","url":"https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.3-nts-vs16-x64.zip","sha256":"519fc1bdf54323d3ab08443c66f77e783d314c13b532e27cc8b390def7f81b60"},"8.4":{"version":"6.3.0","url":"https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.4-nts-vs17-x64.zip","sha256":"6db881ed172703962002d7e02dacc8ddb3f789904c648fee3e6ceec1319679cd"},"8.5":{"version":"6.3.0","url":"https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.5-nts-vs17-x64.zip","sha256":"481d6d1af45060ab41af6abe250faa270276fc47a493badc2e178024cdf6e255"}}},"imagick":{"zend":false,"needs":"","builds":{"8.2":{"version":"3.8.1","url":"https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.2-nts-vs16-x64.zip","sha256":"c15582bfbe19abad8a7894965e82f51d6e5c167d1fa3c0876e5dc64573a4daa9"},"8.3":{"version":"3.8.1","url":"https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.3-nts-vs16-x64.zip","sha256":"6954c4cd93fb2844616baab9c04a0dd83f3fde19289563f8b693f613b4cc825c"},"8.4":{"version":"3.8.1","url":"https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.4-nts-vs17-x64.zip","sha256":"98bd9e5d7355aa8fbc348774613c0ee9844447a3ba5f2565a7aa08486aead541"},"8.5":{"version":"3.8.1","url":"https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.5-nts-vs17-x64.zip","sha256":"67ab8675e59cbbbefd3462c91be662670592f5d02d862f5ee480d9e4707b1fc0"}}},"memcached":{"zend":false,"needs":"","builds":{"8.2":{"version":"3.4.0","url":"https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.2-nts-vs16-x64.zip","sha256":"531388b77481fde9329ea90293df9fe7895e07cedef4540827121b1a19f619c5"},"8.3":{"version":"3.4.0","url":"https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.3-nts-vs16-x64.zip","sha256":"91a6fee873f6eb36d393d48f567461a4836a6c01c1af9beee0a7bca714efd3b9"},"8.4":{"version":"3.4.0","url":"https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.4-nts-vs17-x64.zip","sha256":"dd4330cf70cae3de0f9c03a4eb194418e511a3103c329ba6f6e218b4a6a0d837"},"8.5":{"version":"3.4.0","url":"https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.5-nts-vs17-x64.zip","sha256":"1c7eba843c0aa65c8b2f08fdfa7a0f892b9df531ae64d82e7c7ef1090ea0d103"}}},"xdebug":{"zend":true,"needs":"","builds":{"8.2":{"version":"3.5.3","url":"https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.2-nts-vs16-x64.zip","sha256":"78b18873c20e6ac38bbda1b17e272db4ba0c47b1eb99a0179440bd0ea82d8f18"},"8.3":{"version":"3.5.3","url":"https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.3-nts-vs16-x64.zip","sha256":"9883a4361e2f7208ea15b6dbc66f346f2bb5b9a168384f37c5433833c7420ccd"},"8.4":{"version":"3.5.3","url":"https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.4-nts-vs17-x64.zip","sha256":"0d8bfc5524343f89caf66f400e63e8bd83fc84dec885b053ec8aabe8945418f4"},"8.5":{"version":"3.5.3","url":"https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.5-nts-vs17-x64.zip","sha256":"1085ff005c513757f428d3ab792a2d5ce007e382ffef9ef422de347d3bed830d"}}},"sqlsrv":{"zend":false,"needs":"sqlsrv needs the Microsoft ODBC Driver for SQL Server on this machine","builds":{"8.2":{"version":"5.12.0","url":"https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.12.0/php_sqlsrv-5.12.0-8.2-nts-vs16-x64.zip","sha256":"90861d8a5f19339a16c5a01afb1291e2043fdf6cbaa0efe07d2972c75709e5ab"},"8.3":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.3-nts-vs16-x64.zip","sha256":"1a9d8cc6819e92ccfd19d67893abf643de1093b1ef7106402e2ae668110298db"},"8.4":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.4-nts-vs17-x64.zip","sha256":"e47854a5d84adf2d78911ccdaa8b5bfd1048e11dab90ca64ad168f719fb4701f"},"8.5":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.5-nts-vs17-x64.zip","sha256":"d38dbc0f7e2dcd99237fc9ec2fba07ab547d13dd3fc76b343ceed842f9539a41"}}},"pdo_sqlsrv":{"zend":false,"needs":"pdo_sqlsrv needs the Microsoft ODBC Driver for SQL Server on this machine","builds":{"8.2":{"version":"5.12.0","url":"https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.12.0/php_pdo_sqlsrv-5.12.0-8.2-nts-vs16-x64.zip","sha256":"d2a81c2d51976f039335a6c0ea10acd90c69390c83bf75253688eb6993acad97"},"8.3":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.3-nts-vs16-x64.zip","sha256":"0561c4fa3dc764899d6c366af4893fb12c1d36353a6c6eb2398016e429d465b4"},"8.4":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.4-nts-vs17-x64.zip","sha256":"fd31b57ea01f30e13564e9f12231a0553d64e303f4dc89856efc0514a2e28159"},"8.5":{"version":"5.13.3","url":"https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.5-nts-vs17-x64.zip","sha256":"63bbda9081266cba12c46071324166e97434aa8366e47d8122122ff5e6cffb36"}}},"apcu":{"zend":false,"needs":"","builds":{"8.2":{"version":"5.1.28","url":"https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.2-nts-vs16-x64.zip","sha256":"f986389ec644894ac2c209420a2cd4eba04c340650e3461dfacecf93b846d35e"},"8.3":{"version":"5.1.28","url":"https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.3-nts-vs16-x64.zip","sha256":"1ff653f7a7375f3ebd04d33f5da611aad602c80728b00c1a52143bfec815fa17"},"8.4":{"version":"5.1.28","url":"https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.4-nts-vs17-x64.zip","sha256":"28f522ce9b65d8696dfcc999bf0ad9811d97d6ef9e26e35b117c3f8e9769e951"},"8.5":{"version":"5.1.28","url":"https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.5-nts-vs17-x64.zip","sha256":"8efdd54ba08c4af2075d207b2ba3aad52899214de261e4b1d5a41ba96689b622"}}},"mongodb":{"zend":false,"needs":"","builds":{"8.2":{"version":"2.5.7","url":"https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.2-nts-vs16-x64.zip","sha256":"62773cd1fddb523cf8c1dd336db83dc8d9ee2a63d60f85ac7c0a036512e76706"},"8.3":{"version":"2.5.7","url":"https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.3-nts-vs16-x64.zip","sha256":"bc3118895788eb97e36e70e393c680fa09892d0ef259506e5e1948424cc0c4dd"},"8.4":{"version":"2.5.7","url":"https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.4-nts-vs17-x64.zip","sha256":"ec3a08a59624789e977e25e3be88bfc85ded69fdaa678b92af1a197989047e34"},"8.5":{"version":"2.5.7","url":"https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.5-nts-vs17-x64.zip","sha256":"84a6523453bb956d9ce7fc7d2bf86d15068744abdbc12b3e406194b934461e6c"}}},"amqp":{"zend":false,"needs":"","builds":{"8.2":{"version":"2.2.0","url":"https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.2-nts-vs16-x64.zip","sha256":"448a6ecd5c8b26220faab1893e026c6f382edd7a016b6499139fa50b0e9f9c90"},"8.3":{"version":"2.2.0","url":"https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.3-nts-vs16-x64.zip","sha256":"d91e5e6d8fc216bb2c94afc1e21c46e038940422c09d038fa92a67f1a189ee90"},"8.4":{"version":"2.2.0","url":"https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.4-nts-vs17-x64.zip","sha256":"754b99f886183e9219e304f95060fd8de77471a08ca0b969119b506de8634302"},"8.5":{"version":"2.2.0","url":"https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.5-nts-vs17-x64.zip","sha256":"d43e4a70f4bfb9679aaa50eac6b3bfe0e9d9aacda3e2db731d2324902852ac28"}}}}}
+{
+  "schema": 1,
+  "extensions": {
+    "redis": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "6.3.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.2-nts-vs16-x64.zip",
+          "sha256": "b2b730b99b97352212b338c01f7dde577857e31c5f8e1d011ec2871e63f8f87c"
+        },
+        "8.3": {
+          "version": "6.3.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.3-nts-vs16-x64.zip",
+          "sha256": "519fc1bdf54323d3ab08443c66f77e783d314c13b532e27cc8b390def7f81b60"
+        },
+        "8.4": {
+          "version": "6.3.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.4-nts-vs17-x64.zip",
+          "sha256": "6db881ed172703962002d7e02dacc8ddb3f789904c648fee3e6ceec1319679cd"
+        },
+        "8.5": {
+          "version": "6.3.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/redis/6.3.0/php_redis-6.3.0-8.5-nts-vs17-x64.zip",
+          "sha256": "481d6d1af45060ab41af6abe250faa270276fc47a493badc2e178024cdf6e255"
+        }
+      }
+    },
+    "imagick": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "3.8.1",
+          "url": "https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.2-nts-vs16-x64.zip",
+          "sha256": "c15582bfbe19abad8a7894965e82f51d6e5c167d1fa3c0876e5dc64573a4daa9"
+        },
+        "8.3": {
+          "version": "3.8.1",
+          "url": "https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.3-nts-vs16-x64.zip",
+          "sha256": "6954c4cd93fb2844616baab9c04a0dd83f3fde19289563f8b693f613b4cc825c"
+        },
+        "8.4": {
+          "version": "3.8.1",
+          "url": "https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.4-nts-vs17-x64.zip",
+          "sha256": "98bd9e5d7355aa8fbc348774613c0ee9844447a3ba5f2565a7aa08486aead541"
+        },
+        "8.5": {
+          "version": "3.8.1",
+          "url": "https://downloads.php.net/~windows/pecl/releases/imagick/3.8.1/php_imagick-3.8.1-8.5-nts-vs17-x64.zip",
+          "sha256": "67ab8675e59cbbbefd3462c91be662670592f5d02d862f5ee480d9e4707b1fc0"
+        }
+      }
+    },
+    "memcached": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "3.4.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.2-nts-vs16-x64.zip",
+          "sha256": "531388b77481fde9329ea90293df9fe7895e07cedef4540827121b1a19f619c5"
+        },
+        "8.3": {
+          "version": "3.4.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.3-nts-vs16-x64.zip",
+          "sha256": "91a6fee873f6eb36d393d48f567461a4836a6c01c1af9beee0a7bca714efd3b9"
+        },
+        "8.4": {
+          "version": "3.4.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.4-nts-vs17-x64.zip",
+          "sha256": "dd4330cf70cae3de0f9c03a4eb194418e511a3103c329ba6f6e218b4a6a0d837"
+        },
+        "8.5": {
+          "version": "3.4.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/memcached/3.4.0/php_memcached-3.4.0-8.5-nts-vs17-x64.zip",
+          "sha256": "1c7eba843c0aa65c8b2f08fdfa7a0f892b9df531ae64d82e7c7ef1090ea0d103"
+        }
+      }
+    },
+    "xdebug": {
+      "zend": true,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "3.5.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.2-nts-vs16-x64.zip",
+          "sha256": "78b18873c20e6ac38bbda1b17e272db4ba0c47b1eb99a0179440bd0ea82d8f18"
+        },
+        "8.3": {
+          "version": "3.5.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.3-nts-vs16-x64.zip",
+          "sha256": "9883a4361e2f7208ea15b6dbc66f346f2bb5b9a168384f37c5433833c7420ccd"
+        },
+        "8.4": {
+          "version": "3.5.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.4-nts-vs17-x64.zip",
+          "sha256": "0d8bfc5524343f89caf66f400e63e8bd83fc84dec885b053ec8aabe8945418f4"
+        },
+        "8.5": {
+          "version": "3.5.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/xdebug/3.5.3/php_xdebug-3.5.3-8.5-nts-vs17-x64.zip",
+          "sha256": "1085ff005c513757f428d3ab792a2d5ce007e382ffef9ef422de347d3bed830d"
+        }
+      }
+    },
+    "sqlsrv": {
+      "zend": false,
+      "needs": "sqlsrv needs the Microsoft ODBC Driver for SQL Server on this machine",
+      "builds": {
+        "8.2": {
+          "version": "5.12.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.12.0/php_sqlsrv-5.12.0-8.2-nts-vs16-x64.zip",
+          "sha256": "90861d8a5f19339a16c5a01afb1291e2043fdf6cbaa0efe07d2972c75709e5ab"
+        },
+        "8.3": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.3-nts-vs16-x64.zip",
+          "sha256": "1a9d8cc6819e92ccfd19d67893abf643de1093b1ef7106402e2ae668110298db"
+        },
+        "8.4": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.4-nts-vs17-x64.zip",
+          "sha256": "e47854a5d84adf2d78911ccdaa8b5bfd1048e11dab90ca64ad168f719fb4701f"
+        },
+        "8.5": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/sqlsrv/5.13.3/php_sqlsrv-5.13.3-8.5-nts-vs17-x64.zip",
+          "sha256": "d38dbc0f7e2dcd99237fc9ec2fba07ab547d13dd3fc76b343ceed842f9539a41"
+        }
+      }
+    },
+    "pdo_sqlsrv": {
+      "zend": false,
+      "needs": "pdo_sqlsrv needs the Microsoft ODBC Driver for SQL Server on this machine",
+      "builds": {
+        "8.2": {
+          "version": "5.12.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.12.0/php_pdo_sqlsrv-5.12.0-8.2-nts-vs16-x64.zip",
+          "sha256": "d2a81c2d51976f039335a6c0ea10acd90c69390c83bf75253688eb6993acad97"
+        },
+        "8.3": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.3-nts-vs16-x64.zip",
+          "sha256": "0561c4fa3dc764899d6c366af4893fb12c1d36353a6c6eb2398016e429d465b4"
+        },
+        "8.4": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.4-nts-vs17-x64.zip",
+          "sha256": "fd31b57ea01f30e13564e9f12231a0553d64e303f4dc89856efc0514a2e28159"
+        },
+        "8.5": {
+          "version": "5.13.3",
+          "url": "https://downloads.php.net/~windows/pecl/releases/pdo_sqlsrv/5.13.3/php_pdo_sqlsrv-5.13.3-8.5-nts-vs17-x64.zip",
+          "sha256": "63bbda9081266cba12c46071324166e97434aa8366e47d8122122ff5e6cffb36"
+        }
+      }
+    },
+    "apcu": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "5.1.28",
+          "url": "https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.2-nts-vs16-x64.zip",
+          "sha256": "f986389ec644894ac2c209420a2cd4eba04c340650e3461dfacecf93b846d35e"
+        },
+        "8.3": {
+          "version": "5.1.28",
+          "url": "https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.3-nts-vs16-x64.zip",
+          "sha256": "1ff653f7a7375f3ebd04d33f5da611aad602c80728b00c1a52143bfec815fa17"
+        },
+        "8.4": {
+          "version": "5.1.28",
+          "url": "https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.4-nts-vs17-x64.zip",
+          "sha256": "28f522ce9b65d8696dfcc999bf0ad9811d97d6ef9e26e35b117c3f8e9769e951"
+        },
+        "8.5": {
+          "version": "5.1.28",
+          "url": "https://downloads.php.net/~windows/pecl/releases/apcu/5.1.28/php_apcu-5.1.28-8.5-nts-vs17-x64.zip",
+          "sha256": "8efdd54ba08c4af2075d207b2ba3aad52899214de261e4b1d5a41ba96689b622"
+        }
+      }
+    },
+    "mongodb": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "2.5.7",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.2-nts-vs16-x64.zip",
+          "sha256": "62773cd1fddb523cf8c1dd336db83dc8d9ee2a63d60f85ac7c0a036512e76706"
+        },
+        "8.3": {
+          "version": "2.5.7",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.3-nts-vs16-x64.zip",
+          "sha256": "bc3118895788eb97e36e70e393c680fa09892d0ef259506e5e1948424cc0c4dd"
+        },
+        "8.4": {
+          "version": "2.5.7",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.4-nts-vs17-x64.zip",
+          "sha256": "ec3a08a59624789e977e25e3be88bfc85ded69fdaa678b92af1a197989047e34"
+        },
+        "8.5": {
+          "version": "2.5.7",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.5-nts-vs17-x64.zip",
+          "sha256": "84a6523453bb956d9ce7fc7d2bf86d15068744abdbc12b3e406194b934461e6c"
+        }
+      }
+    },
+    "amqp": {
+      "zend": false,
+      "needs": "",
+      "builds": {
+        "8.2": {
+          "version": "2.2.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.2-nts-vs16-x64.zip",
+          "sha256": "448a6ecd5c8b26220faab1893e026c6f382edd7a016b6499139fa50b0e9f9c90"
+        },
+        "8.3": {
+          "version": "2.2.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.3-nts-vs16-x64.zip",
+          "sha256": "d91e5e6d8fc216bb2c94afc1e21c46e038940422c09d038fa92a67f1a189ee90"
+        },
+        "8.4": {
+          "version": "2.2.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.4-nts-vs17-x64.zip",
+          "sha256": "754b99f886183e9219e304f95060fd8de77471a08ca0b969119b506de8634302"
+        },
+        "8.5": {
+          "version": "2.2.0",
+          "url": "https://downloads.php.net/~windows/pecl/releases/amqp/2.2.0/php_amqp-2.2.0-8.5-nts-vs17-x64.zip",
+          "sha256": "d43e4a70f4bfb9679aaa50eac6b3bfe0e9d9aacda3e2db731d2324902852ac28"
+        }
+      }
+    }
+  }
+}

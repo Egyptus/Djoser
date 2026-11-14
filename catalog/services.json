@@ -1,1 +1,57 @@
-{"schema":1,"services":{"mysql":{"versions":{"8.0.46":{"url":"https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-8.0.46-winx64.zip","sha256":"28e9eda019d88eff4478d811ea2110b83f02a3966be157fe91cc55def3ab0d4d"},"8.4.13":{"url":"https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.13-winx64.zip","sha256":"e9cd98b1d23f122987b1afca26ad942efec5891481103d48ae3cde237fa3ea54"},"9.7.4":{"url":"https://cdn.mysql.com/Downloads/MySQL-9.7/mysql-9.7.4-winx64.zip","sha256":"641bdaf01004927194c561b956f14f915a3166c9b0f9b1b5464ae63152bf4b96"}}},"redis":{"versions":{"7.2.16":{"url":"https://github.com/redis-windows/redis-windows/releases/download/7.2.16/Redis-7.2.16-Windows-x64-msys2.zip","sha256":"bcbfda1dda027beaea4d616f8992f9b6353613c1b1f4d0e4a6776940bb036347"},"7.4.11":{"url":"https://github.com/redis-windows/redis-windows/releases/download/7.4.11/Redis-7.4.11-Windows-x64-msys2.zip","sha256":"ec629971d76756dd040204297f1a92f43848e7a5f4862d39426beeafcca2a2a9"},"8.4.7":{"url":"https://github.com/redis-windows/redis-windows/releases/download/8.4.7/Redis-8.4.7-Windows-x64-msys2.zip","sha256":"3a42871a878976ea372db25f8f04190e82403854255a44aa39c349dceec6aea3"},"8.10.3":{"url":"https://github.com/redis-windows/redis-windows/releases/download/8.10.3/Redis-8.10.3-Windows-x64-msys2.zip","sha256":"af16df340525b431e9ec8dabfd625d5e7a233f82805b5418819904ea909c447f"}}},"cloudflared":{"versions":{"2026.10.7":{"url":"https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-windows-amd64.exe","sha256":"2493dbc168923bb3e59e5e7716f71deced92992eea9acd6e9d74f84ac7751343"}}},"heidisql":{"versions":{"12.22":{"url":"https://github.com/HeidiSQL/HeidiSQL/releases/download/v12.22/HeidiSQL_12.22_64_Portable.zip","sha256":"7b36821fa3e16cc37b511d41747efa4c8b980d1e3fa937e52c5931bcc4ee79b4"}}}}}
+{
+  "schema": 1,
+  "services": {
+    "mysql": {
+      "versions": {
+        "8.0.46": {
+          "url": "https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-8.0.46-winx64.zip",
+          "sha256": "28e9eda019d88eff4478d811ea2110b83f02a3966be157fe91cc55def3ab0d4d"
+        },
+        "8.4.13": {
+          "url": "https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.13-winx64.zip",
+          "sha256": "e9cd98b1d23f122987b1afca26ad942efec5891481103d48ae3cde237fa3ea54"
+        },
+        "9.7.4": {
+          "url": "https://cdn.mysql.com/Downloads/MySQL-9.7/mysql-9.7.4-winx64.zip",
+          "sha256": "641bdaf01004927194c561b956f14f915a3166c9b0f9b1b5464ae63152bf4b96"
+        }
+      }
+    },
+    "redis": {
+      "versions": {
+        "7.2.16": {
+          "url": "https://github.com/redis-windows/redis-windows/releases/download/7.2.16/Redis-7.2.16-Windows-x64-msys2.zip",
+          "sha256": "bcbfda1dda027beaea4d616f8992f9b6353613c1b1f4d0e4a6776940bb036347"
+        },
+        "7.4.11": {
+          "url": "https://github.com/redis-windows/redis-windows/releases/download/7.4.11/Redis-7.4.11-Windows-x64-msys2.zip",
+          "sha256": "ec629971d76756dd040204297f1a92f43848e7a5f4862d39426beeafcca2a2a9"
+        },
+        "8.4.7": {
+          "url": "https://github.com/redis-windows/redis-windows/releases/download/8.4.7/Redis-8.4.7-Windows-x64-msys2.zip",
+          "sha256": "3a42871a878976ea372db25f8f04190e82403854255a44aa39c349dceec6aea3"
+        },
+        "8.10.3": {
+          "url": "https://github.com/redis-windows/redis-windows/releases/download/8.10.3/Redis-8.10.3-Windows-x64-msys2.zip",
+          "sha256": "af16df340525b431e9ec8dabfd625d5e7a233f82805b5418819904ea909c447f"
+        }
+      }
+    },
+    "cloudflared": {
+      "versions": {
+        "2026.10.7": {
+          "url": "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-windows-amd64.exe",
+          "sha256": "2493dbc168923bb3e59e5e7716f71deced92992eea9acd6e9d74f84ac7751343"
+        }
+      }
+    },
+    "heidisql": {
+      "versions": {
+        "12.22": {
+          "url": "https://github.com/HeidiSQL/HeidiSQL/releases/download/v12.22/HeidiSQL_12.22_64_Portable.zip",
+          "sha256": "7b36821fa3e16cc37b511d41747efa4c8b980d1e3fa937e52c5931bcc4ee79b4"
+        }
+      }
+    }
+  }
+}

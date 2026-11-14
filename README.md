@@ -211,7 +211,8 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser status` | Its services and pending changes |
 | `djoser config php key=value,...` | Show or change the project's PHP settings |
 | `djoser remove` | Stop it and forget it; files and data stay |
-| `djoser ps` | Every running project |
+| `djoser ps` | Running projects; `-a` adds stopped ones |
+| `djoser projects` | Every project Djoser knows, with its folder |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser tool db` | Open HeidiSQL on the project's database |
 | `djoser share` | A temporary public address, until Ctrl+C |
@@ -224,8 +225,10 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 
 | Versions | |
 |---|---|
-| `djoser list <service>` | What can be installed |
-| `djoser install <service> <version>` | Download a version |
+| `djoser list <service>` | What can be installed; `--all` adds archived PHP builds |
+| `djoser install <service> <version>` | Download a version, such as `php 8.5`, `mysql 8.4`, `redis 8.4`, `node 22` |
+| `djoser install composer latest` | Download Composer |
+| `djoser add php <folder>` | Use a PHP already on this machine, where it is |
 | `djoser install heidisql`, `cloudflared` | Download a helper program ahead of time |
 | `djoser install php-ext <name>` | Add a PHP extension to this project |
 | `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
@@ -236,6 +239,11 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 |---|---|
 | `djoser trust` | Trust the local certificate for HTTPS |
 | `djoser doctor` | Check this machine and explain how to fix problems |
+| `djoser engine start` / `stop` / `status` | Control Djoser's background service; other commands start it when needed |
+| `djoser services` | Every process Djoser runs, with its state and port |
+| `djoser operations` | Recent downloads and checks; `operations cancel <id>` stops one |
+
+Run `djoser <command> --help` for every option.
 
 ## What runs today
 
@@ -249,11 +257,20 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | Sites | Caddy, HTTPS on `*.localhost` |
 | Helpers | HeidiSQL, cloudflared |
 
-Valkey, MariaDB, PostgreSQL, MongoDB and RustFS are planned.
+RustFS, Mailpit, MariaDB, PostgreSQL and MongoDB are planned.
 
 ## This repository
 
 It holds the installer in [Releases](https://github.com/Egyptus/Djoser/releases) and the tables in [`catalog/`](catalog), which list the versions Djoser may download and the SHA-256 of each file. Djoser reads them so that new versions can be added without a new release.
+
+The tables are written by the scripts in [`scripts/`](scripts), which need PowerShell 7:
+
+```powershell
+pwsh scripts/update-services.ps1     # services and helper programs
+pwsh scripts/update-extensions.ps1   # PHP extensions
+```
+
+A version already listed keeps its hash; a new one is downloaded once and hashed.
 
 <div align="center">
 
