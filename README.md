@@ -221,6 +221,15 @@ AWS_USE_PATH_STYLE_ENDPOINT=true
 
 Use the port `up` printed if it is not 9000.
 
+## Catch mail
+
+```yaml
+services:
+  mailpit: 1.33
+```
+
+Every message your app sends lands in an inbox at `http://127.0.0.1:8025` instead of a real mailbox. For Laravel, `djoser env sync` sets `MAIL_MAILER=smtp`, `MAIL_HOST=127.0.0.1` and `MAIL_PORT` (1025 unless `up` printed another port).
+
 ## Open the database
 
 ```powershell
@@ -293,10 +302,11 @@ Run `djoser <command> --help` for every option.
 | MySQL | 8.0, 8.4, 9.7 |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | RustFS (S3) | 1.0, with a web console and a bucket per project |
+| Mailpit | 1.33, catches the mail your app sends |
 | Sites | Caddy, HTTPS on `*.localhost` |
 | Helpers | HeidiSQL, cloudflared |
 
-Mailpit, MariaDB, PostgreSQL and MongoDB are planned.
+MariaDB, PostgreSQL and MongoDB are planned.
 
 ## This repository
 

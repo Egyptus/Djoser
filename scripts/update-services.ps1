@@ -31,6 +31,9 @@ $releases = [ordered]@{
     rustfs = @(
         @{ version = '1.0.5'; url = 'https://github.com/rustfs/rustfs/releases/download/1.0.5/rustfs-windows-x86_64-v1.0.5.zip' }
     )
+    mailpit = @(
+        @{ version = '1.33.1'; url = 'https://github.com/axllent/mailpit/releases/download/v1.33.1/mailpit-windows-amd64.zip' }
+    )
     cloudflared = @(
         @{ version = '2026.10.7'; url = 'https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-windows-amd64.exe' }
     )
