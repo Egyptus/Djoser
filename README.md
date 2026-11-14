@@ -177,7 +177,14 @@ djoser status
 djoser logs queue -f
 ```
 
-`djoser status` shows each worker's state and restarts, and `djoser logs <worker>` prints the end of its log; `-f` keeps printing until Ctrl+C, and `-n 200` shows more lines. To run one by hand instead, in its own terminal: `djoser run queue`.
+`djoser status` shows each worker's state, restarts and memory (with what it started, such as Vite), and how many queue jobs have failed; `djoser status -w` redraws it every 2 seconds until Ctrl+C. `djoser logs <worker>` prints the end of its log; `-f` keeps printing until Ctrl+C, and `-n 200` shows more lines. To run one by hand instead, in its own terminal: `djoser run queue`.
+
+```powershell
+djoser jobs
+djoser jobs retry all
+```
+
+`djoser jobs` lists the newest failed jobs, asking Laravel itself, so every failed-job driver works. `djoser jobs retry <id>` or `retry all` runs them again through `php artisan queue:retry`.
 
 ## See what is running
 
@@ -459,7 +466,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 |---|---|
 | `djoser init` | Create `djoser.yaml` |
 | `djoser up` / `down` | Start or stop the project |
-| `djoser status` | Its services and pending changes |
+| `djoser status [-w]` | Its services, workers, failed jobs and pending changes; `-w` keeps it on screen |
 | `djoser config php key=value,...` | Show or change the project's PHP settings |
 | `djoser env sync` | Compare `.env` with what Djoser runs, and update it after a typed yes |
 | `djoser remove` | Stop it and forget it; files and data stay |
@@ -469,6 +476,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser tool db` | Open HeidiSQL on the project's database |
 | `djoser run [name] [arguments]` | Run a script from `djoser.yaml`, or list them |
 | `djoser logs [worker] [-n lines] [-f]` | A worker's log, or the list of workers |
+| `djoser jobs` / `jobs retry <id|all>` | Failed queue jobs of a Laravel project, and running them again |
 | `djoser db backup` / `restore` / `list` | Back up the project's databases, restore one after a typed yes, list the backups |
 | `djoser share` | A temporary public address, until Ctrl+C |
 
