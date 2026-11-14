@@ -28,6 +28,9 @@ $releases = [ordered]@{
     redis = @('7.2.16', '7.4.11', '8.4.7', '8.10.3') | ForEach-Object {
         @{ version = $_; url = "https://github.com/redis-windows/redis-windows/releases/download/$_/Redis-$_-Windows-x64-msys2.zip" }
     }
+    rustfs = @(
+        @{ version = '1.0.5'; url = 'https://github.com/rustfs/rustfs/releases/download/1.0.5/rustfs-windows-x86_64-v1.0.5.zip' }
+    )
     cloudflared = @(
         @{ version = '2026.10.7'; url = 'https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-windows-amd64.exe' }
     )

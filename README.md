@@ -168,6 +168,7 @@ Edit the file and run `djoser up` to apply it. A version can be a line such as `
 | `version` | The version to run |
 | `extensions` | PHP extensions, such as `[redis, imagick, xdebug]` |
 | `database` | The database name; by default the project's name, with `-` turned into `_` |
+| `bucket` | The S3 bucket name for `rustfs`; by default the project's name |
 | `port` | Run a separate server for this project on this port |
 | `data` | Run a separate server with its data in this folder, which must exist |
 | `dedicated: true` | Run a separate server for this project |
@@ -183,6 +184,27 @@ djoser config php
 The first writes them to `djoser.yaml` and restarts the project's PHP if it is running; an empty value, such as `memory_limit=`, removes one. The second lists them.
 
 Servers are shared between projects by default, with one database per project, on `127.0.0.1` only. A separate server starts with empty data.
+
+## Store files in S3
+
+```yaml
+services:
+  rustfs: 1.0
+```
+
+`up` starts an S3-compatible server on `127.0.0.1`, makes a bucket named after the project, and prints the address, the web console and the keys. For Laravel, install `league/flysystem-aws-s3-v3` and set:
+
+```env
+FILESYSTEM_DISK=s3
+AWS_ACCESS_KEY_ID=rustfsadmin
+AWS_SECRET_ACCESS_KEY=rustfsadmin
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=shop
+AWS_ENDPOINT=http://127.0.0.1:9000
+AWS_USE_PATH_STYLE_ENDPOINT=true
+```
+
+Use the port `up` printed if it is not 9000.
 
 ## Open the database
 
@@ -254,10 +276,11 @@ Run `djoser <command> --help` for every option.
 | Composer, Node.js | Per-project versions, in any folder |
 | MySQL | 8.0, 8.4, 9.7 |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
+| RustFS (S3) | 1.0, with a web console and a bucket per project |
 | Sites | Caddy, HTTPS on `*.localhost` |
 | Helpers | HeidiSQL, cloudflared |
 
-RustFS, Mailpit, MariaDB, PostgreSQL and MongoDB are planned.
+Mailpit, MariaDB, PostgreSQL and MongoDB are planned.
 
 ## This repository
 

@@ -37,6 +37,14 @@
         }
       }
     },
+    "rustfs": {
+      "versions": {
+        "1.0.5": {
+          "url": "https://github.com/rustfs/rustfs/releases/download/1.0.5/rustfs-windows-x86_64-v1.0.5.zip",
+          "sha256": "4df180336d9774ab63eeb86b99935e697967018962bbba876e67f2932fd05dff"
+        }
+      }
+    },
     "cloudflared": {
       "versions": {
         "2026.10.7": {
