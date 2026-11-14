@@ -81,9 +81,16 @@ services:
     version: 8.4
     database: shop
   redis: 8.4
+scripts:
+  queue: php artisan queue:work --memory=512 --max-time=3600
+  schedule: php artisan schedule:work
+  dev: npm run dev
+  build: npm run build
+  test: php artisan test
+  fresh: php artisan migrate:fresh --seed
 ```
 
-`extensions: [redis]` is the PHP extension that talks to Redis. `redis: 8.4` is the Redis server itself. You need both.
+`extensions: [redis]` is the PHP extension that talks to Redis. `redis: 8.4` is the Redis server itself. You need both. `init` writes the `scripts` for a Laravel project; see [Run the project's scripts](#run-the-projects-scripts).
 
 ### 4. Start it
 
@@ -147,7 +154,7 @@ Projects using the same Redis version share one server, so give each project its
 ```powershell
 djoser artisan migrate
 djoser npm install
-djoser npm run build
+djoser run build
 ```
 
 Open `https://shop.localhost`.
@@ -157,9 +164,9 @@ Open `https://shop.localhost`.
 Each of these stays open, so give it its own terminal:
 
 ```powershell
-djoser artisan queue:work
-djoser artisan schedule:work
-djoser npm run dev
+djoser run queue
+djoser run schedule
+djoser run dev
 ```
 
 ## See what is running
@@ -189,6 +196,8 @@ Edit the file and run `djoser up` to apply it. A version can be a line such as `
 | `dedicated: true` | Run a separate server for this project |
 | `ini` | PHP settings for this project, one per line, such as `memory_limit: 1G` |
 | `settings` | The server's own options, one per line; gives the project its own server |
+
+At the top of the file, `scripts:` names commands for `djoser run`, one per line.
 
 To change PHP settings from the terminal:
 
@@ -379,6 +388,25 @@ djoser tool db
 
 Opens [HeidiSQL](https://www.heidisql.com/) on this project's database, downloading it the first time. In the terminal, `djoser mysql`, `djoser mariadb`, `djoser psql` and `djoser redis-cli` connect to the project's services by themselves.
 
+## Run the project's scripts
+
+```powershell
+djoser run
+djoser run queue
+djoser run test --filter=OrderTest
+```
+
+`djoser run` lists the scripts under `scripts:` in `djoser.yaml`, and `djoser run <name>` runs one in the project's folder with the project's PHP, Composer and Node.js. Anything after the name goes at the end of the command, or where `{args}` stands, as in `dev: npm run dev -- {args}`.
+
+A command starts with one of Djoser's tools (`php`, `artisan`, `composer`, `node`, `npm`, `npx`, `mysql` and the others). To use anything else, such as `git` or `&&`, start it with `!` and put it in quotes; it then runs through `cmd`, and `php`, `composer` and `npm` inside it are still the project's:
+
+```yaml
+scripts:
+  deploy: "!git pull && composer install && php artisan migrate --force"
+```
+
+For a Laravel project that has no scripts, `djoser run` offers to add the six above.
+
 ## Back up the database
 
 ```powershell
@@ -417,6 +445,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser projects` | Every project Djoser knows, with its folder |
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser tool db` | Open HeidiSQL on the project's database |
+| `djoser run [name] [arguments]` | Run a script from `djoser.yaml`, or list them |
 | `djoser db backup` / `restore` / `list` | Back up the project's databases, restore one after a typed yes, list the backups |
 | `djoser share` | A temporary public address, until Ctrl+C |
 
