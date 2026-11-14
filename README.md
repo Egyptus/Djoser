@@ -161,13 +161,23 @@ Open `https://shop.localhost`.
 
 ### 7. Run the background work
 
-Each of these stays open, so give it its own terminal:
+List the scripts that should keep running in `djoser.yaml`:
+
+```yaml
+workers:
+  - queue: 2
+  - schedule
+  - dev
+```
+
+`djoser up` then starts them in the background and starts them again if they stop; `djoser down` stops them, with whatever they started, such as Vite under `npm run dev`. `queue: 2` runs two queue workers. Nothing runs until you list it, so a project copied to another machine sends no mail by itself.
 
 ```powershell
-djoser run queue
-djoser run schedule
-djoser run dev
+djoser status
+djoser logs queue -f
 ```
+
+`djoser status` shows each worker's state and restarts, and `djoser logs <worker>` prints the end of its log; `-f` keeps printing until Ctrl+C, and `-n 200` shows more lines. To run one by hand instead, in its own terminal: `djoser run queue`.
 
 ## See what is running
 
@@ -197,7 +207,7 @@ Edit the file and run `djoser up` to apply it. A version can be a line such as `
 | `ini` | PHP settings for this project, one per line, such as `memory_limit: 1G` |
 | `settings` | The server's own options, one per line; gives the project its own server |
 
-At the top of the file, `scripts:` names commands for `djoser run`, one per line.
+At the top of the file, `scripts:` names commands for `djoser run`, one per line, and `workers:` lists the scripts `up` keeps running.
 
 To change PHP settings from the terminal:
 
@@ -446,6 +456,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser tool db` | Open HeidiSQL on the project's database |
 | `djoser run [name] [arguments]` | Run a script from `djoser.yaml`, or list them |
+| `djoser logs [worker] [-n lines] [-f]` | A worker's log, or the list of workers |
 | `djoser db backup` / `restore` / `list` | Back up the project's databases, restore one after a typed yes, list the backups |
 | `djoser share` | A temporary public address, until Ctrl+C |
 
