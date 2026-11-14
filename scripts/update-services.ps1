@@ -32,6 +32,12 @@ $releases = [ordered]@{
     postgres = @('15.20', '16.16', '17.12', '18.7') | ForEach-Object {
         @{ version = $_; url = "https://get.enterprisedb.com/postgresql/postgresql-$_-1-windows-x64-binaries.zip" }
     }
+    mongodb = @('7.0.48', '8.0.38', '8.2.12', '8.3.17') | ForEach-Object {
+        @{ version = $_; url = "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$_.zip" }
+    }
+    mongosh = @(
+        @{ version = '2.14.2'; url = 'https://github.com/mongodb-js/mongosh/releases/download/v2.14.2/mongosh-2.14.2-win32-x64.zip' }
+    )
     redis = @('7.2.16', '7.4.11', '8.4.7', '8.10.3') | ForEach-Object {
         @{ version = $_; url = "https://github.com/redis-windows/redis-windows/releases/download/$_/Redis-$_-Windows-x64-msys2.zip" }
     }

@@ -273,6 +273,22 @@ postgres:
 
 User `postgres`, no password, `127.0.0.1` only. Djoser sets `port`, `listen_addresses`, `data_directory` and `hba_file` itself.
 
+### mongodb
+
+```yaml
+mongodb:
+  version: 8.0                 # 7.0, 8.0, 8.2, 8.3; mongosh comes with it
+  database: shop               # default: the project's name, - becomes _; made on first write
+  port: 27017                  # default: shared server from 27017
+  data: D:/Data/shop-mongo
+  dedicated: true
+  settings:                    # passed as --name value
+    wiredTigerCacheSizeGB: 1
+    setParameter: diagnosticDataCollectionEnabled=false
+```
+
+No authentication, `127.0.0.1` only. Djoser sets `dbpath`, `port`, `bind_ip` and `bind_ip_all` itself. For Laravel, add the `mongodb` PHP extension and `composer require mongodb/laravel-mongodb`; `djoser env sync` sets `MONGODB_URI` and `MONGODB_DATABASE`.
+
 ### redis
 
 ```yaml
@@ -391,7 +407,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 |---|---|
 | `djoser php`, `composer`, `artisan` | Run with the project's PHP |
 | `djoser node`, `npm`, `npx` | Run with the project's Node.js |
-| `djoser mysql`, `mysqldump`, `mariadb`, `mariadb-dump`, `psql`, `pg_dump`, `redis-cli` | Connect to the project's services |
+| `djoser mysql`, `mysqldump`, `mariadb`, `mariadb-dump`, `psql`, `pg_dump`, `mongosh`, `redis-cli` | Connect to the project's services |
 
 | Versions | |
 |---|---|
@@ -425,13 +441,14 @@ Run `djoser <command> --help` for every option.
 | MySQL | 8.0, 8.4, 9.7 |
 | MariaDB | 10.11, 11.4, 11.8, 12.3, 13.0 |
 | PostgreSQL | 15, 16, 17, 18 |
+| MongoDB | 7.0, 8.0, 8.2, 8.3, with mongosh |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | RustFS (S3) | 1.0, with a web console and a bucket per project |
 | Mailpit | 1.33, catches the mail your app sends |
 | Sites | Caddy, HTTPS on `*.localhost` |
 | Helpers | HeidiSQL, cloudflared |
 
-MongoDB is planned.
+Database backups are planned.
 
 ## This repository
 
