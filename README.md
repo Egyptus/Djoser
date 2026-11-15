@@ -258,6 +258,8 @@ php:
     max_execution_time: 120
 ```
 
+`djoser update php` moves the project to the newest patch of the same line. The new build is checked and the project's extensions are fetched before `djoser.yaml` changes, and a running site switches at once. The old build stays for other projects.
+
 `ini` takes any `php.ini` setting except `extension`, `zend_extension`, `extension_dir`, `curl.cainfo` and `openssl.cafile`. Change it from the terminal with `djoser config php memory_limit=1G`.
 
 ### node
@@ -497,6 +499,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser install heidisql`, `cloudflared`, `mongosh`, `mongodb-tools` | Download a helper program ahead of time |
 | `djoser install php-ext <name>` | Add a PHP extension to this project |
 | `djoser use <service> <version>` | Choose a version for this project; `--env` sets the default |
+| `djoser update php` | Move this project to the newest patch of its PHP line, such as 8.5.12 to 8.5.14; `--env` updates the default |
 | `djoser runtimes` | What is installed |
 | `djoser which <tool>` | Which version a tool runs here, where it was chosen, and its path |
 | `djoser uninstall <service> <version>` | Remove a version, offering a backup first; databases stay |
