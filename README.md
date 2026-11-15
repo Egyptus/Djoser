@@ -186,6 +186,15 @@ djoser jobs retry all
 
 `djoser jobs` lists the newest failed jobs, asking Laravel itself, so every failed-job driver works. `djoser jobs retry <id>` or `retry all` runs them again through `php artisan queue:retry`.
 
+## When a port is taken
+
+```powershell
+djoser ports
+djoser ports move mysql 3307
+```
+
+`djoser ports` lists every port Djoser keeps, what it is for, and who listens on it; `clash` means another program holds it. `ports move` writes `port:` under the service in `djoser.yaml` and, when the project is running, moves it at once. That gives the project its own server, which starts with empty data, so `djoser db backup` first. A shared server whose port is taken already moves to the next free one by itself.
+
 ## See what is running
 
 ```powershell
@@ -510,6 +519,8 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser doctor` | Check this machine and explain how to fix problems |
 | `djoser engine start` / `stop` / `status` | Control Djoser's background service; other commands start it when needed |
 | `djoser services` | Every process Djoser runs, with its state and port |
+| `djoser ports` | Every port Djoser keeps, and whether Djoser or another program listens on it |
+| `djoser ports move <service> [port]` | Give the project's server another port (`port:` in `djoser.yaml`); left out, Djoser picks a free one |
 | `djoser operations` | Recent downloads and checks; `operations cancel <id>` stops one |
 
 Run `djoser <command> --help` for every option.
