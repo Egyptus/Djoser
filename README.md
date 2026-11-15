@@ -517,6 +517,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 |---|---|
 | `djoser trust` | Trust the local certificate for HTTPS |
 | `djoser doctor` | Check this machine and explain how to fix problems |
+| `djoser self-update` | Install the newest release after a yes, checked against its SHA-256; `--check` only says whether there is one |
 | `djoser engine start` / `stop` / `status` | Control Djoser's background service; other commands start it when needed |
 | `djoser services` | Every process Djoser runs, with its state and port |
 | `djoser ports` | Every port Djoser keeps, and whether Djoser or another program listens on it |
