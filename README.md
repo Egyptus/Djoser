@@ -186,6 +186,10 @@ djoser jobs retry all
 
 `djoser jobs` lists the newest failed jobs, asking Laravel itself, so every failed-job driver works. `djoser jobs retry <id>` or `retry all` runs them again through `php artisan queue:retry`.
 
+## The welcome page
+
+While Djoser runs, `http://127.0.0.1` and `http://localhost` (and their `https://` addresses) show a welcome page with the commands, served by Djoser on this machine only. Djoser keeps ports 80 and 443 for it even when no project is up.
+
 ## When a port is taken
 
 ```powershell
@@ -516,7 +520,7 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | Machine | |
 |---|---|
 | `djoser trust` | Trust the local certificate for HTTPS |
-| `djoser doctor` | Check this machine and explain how to fix problems |
+| `djoser doctor` | Check this machine, say whether a newer Djoser is out, and explain how to fix problems |
 | `djoser self-update` | Install the newest release after a yes, checked against its SHA-256; `--check` only says whether there is one |
 | `djoser engine start` / `stop` / `status` | Control Djoser's background service; other commands start it when needed |
 | `djoser services` | Every process Djoser runs, with its state and port |
