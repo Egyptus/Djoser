@@ -15,7 +15,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string[]] $PhpMinors = @('8.2', '8.3', '8.4', '8.5')
+    [string[]] $PhpMinors = @('8.2', '8.3', '8.4', '8.5', '8.6')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -58,7 +58,7 @@ try {
         foreach ($minor in $PhpMinors) {
             foreach ($version in $versions) {
                 $listing = (Invoke-WebRequest -UseBasicParsing "$base/$name/$version/").Links.href
-                $file = @($listing | ForEach-Object { ($_ -split '/')[-1] } | Where-Object { $_ -match "^php_$name-.*-$([regex]::Escape($minor))-nts-vs1[67]-x64\.zip$" }) | Select-Object -First 1
+                $file = @($listing | ForEach-Object { ($_ -split '/')[-1] } | Where-Object { $_ -match "^php_$name-.*-$([regex]::Escape($minor))-nts-vs1[678]-x64\.zip$" }) | Select-Object -First 1
                 if (-not $file) { continue }
 
                 $url = "$base/$name/$version/$file"

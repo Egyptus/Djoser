@@ -24,7 +24,7 @@ Per-project PHP and Node.js, local HTTPS sites, databases, S3, mail and backgrou
 - [djoser.yaml, every key](#djoseryaml-every-key)
 - [djoser.yaml examples](#djoseryaml-examples): [a large Laravel app](#a-large-laravel-app), [Next.js](#nextjs), [a plain page](#a-plain-html-or-php-page)
 - [Every command](#every-command)
-- [Sites, HTTPS and addresses](#sites-https-and-addresses)
+- [Sites, HTTPS and addresses](#sites-https-and-addresses), [another domain: the hosts file](#another-domain-the-hosts-file)
 - [Databases and backups](#databases-and-backups)
 - [Scripts and workers](#scripts-and-workers)
 - [When something is wrong](#when-something-is-wrong)
@@ -53,7 +53,7 @@ The installer is not signed yet, so Windows or your antivirus may warn before ru
 
 To update, run `djoser self-update`, or run the new installer yourself. Either way Djoser stops first and keeps your projects and databases.
 
-While Djoser runs, `http://127.0.0.1` shows a welcome page with this guide.
+While Djoser runs, `https://djoser.localhost` (and `http://127.0.0.1`) shows a welcome page with this guide.
 
 ## A Laravel project from zero
 
@@ -651,7 +651,27 @@ aliases: [www, api, "*"]
 
 `aliases` serves `www.shop.localhost`, `api.shop.localhost` and, with `"*"`, any other subdomain such as `tenant1.shop.localhost`, all from the same project with their own certificates. Laravel sees the name in the request, so subdomain routes work.
 
-Names under `.localhost` open with no setup. Another domain, such as `shop.test`, needs a line in `C:\Windows\System32\drivers\etc\hosts`, added as administrator; `up` prints the line. Djoser does not edit that file, and `"*"` only works under `.localhost`.
+Names under `.localhost` open with no setup. The examples here all use `.localhost`; keep it when you can.
+
+### Another domain: the hosts file
+
+If a browser or a tool will not open a `.localhost` name, or you want `shop.test`, set `domain: shop.test` in `djoser.yaml` and add the name to Windows' `hosts` file. `djoser up` prints the lines to add. Djoser never writes this file, because it needs administrator rights.
+
+In PowerShell started with **Run as administrator**:
+
+```powershell
+Add-Content "$env:windir\System32\drivers\etc\hosts" "`n127.0.0.1 shop.test www.shop.test`n::1 shop.test www.shop.test"
+ipconfig /flushdns
+```
+
+Or with Notepad: start it with **Run as administrator**, open `C:\Windows\System32\drivers\etc\hosts` (choose *All files* in the open box), add these lines at the end, and save:
+
+```text
+127.0.0.1 shop.test www.shop.test
+::1       shop.test www.shop.test
+```
+
+Then run `djoser up` again. The hosts file has no wildcards, so `aliases: ["*"]` works only under `.localhost`; list each subdomain instead. To undo, delete the lines and save.
 
 When port 443 is taken, sites move to another port and `up` prints the address; when port 80 is taken, `http://` addresses stop redirecting. `djoser ports` shows who holds them.
 
@@ -690,6 +710,7 @@ A stop with `djoser workers stop` lasts until the next `djoser up`; `--save` wri
 | The site address has a port such as `:8443` | Another program has port 443; `djoser ports` shows which |
 | A service shows `failed` | `djoser services` shows its last error; its log is in `<home>\logs` |
 | A worker keeps restarting | `djoser logs <worker>` |
+| A `.localhost` name will not open in a browser or tool | Use another domain through the [hosts file](#another-domain-the-hosts-file) |
 | Laravel cannot reach the database | `djoser env sync` |
 | A port is taken | `djoser ports`, then `djoser ports move <service>` |
 | Anything else | `djoser doctor` |
