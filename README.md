@@ -27,6 +27,7 @@ Per-project PHP and Node.js, local HTTPS sites, databases, S3, mail and backgrou
 - [Sites, HTTPS and addresses](#sites-https-and-addresses), [another domain: the hosts file](#another-domain-the-hosts-file)
 - [Databases and backups](#databases-and-backups)
 - [Scripts and workers](#scripts-and-workers)
+- [djoser deploy (experimental)](#djoser-deploy-experimental)
 - [When something is wrong](#when-something-is-wrong)
 - [What runs today](#what-runs-today)
 - [This repository](#this-repository)
@@ -545,6 +546,7 @@ Inside a project folder, commands act on that project. `--project <name>` picks 
 | `djoser config php memory_limit=1G,upload_max_filesize=200M` | Change them; a running project's PHP restarts |
 | `djoser config php memory_limit=` | Remove one |
 | `djoser env sync` | Compare `.env` with what Djoser runs, and update it after a typed `y` |
+| `djoser deploy` | Write `deploy.sh` for an Ubuntu server (experimental); `--path <file\|folder>` elsewhere, `-y` replaces without asking |
 
 ### Tools
 
@@ -701,6 +703,44 @@ djoser db restore
 
 A stop with `djoser workers stop` lasts until the next `djoser up`; `--save` writes `startup:` to `djoser.yaml`, so the file decides from then on. `djoser status` shows each worker's memory with what it started, and how many queue jobs have failed; `djoser jobs` lists them, asking Laravel itself, so every failed-job driver works.
 
+## djoser deploy (experimental)
+
+> **Experimental. You run this script at your own risk.** It is meant for someone who knows Linux and has read the script and changed it where needed before running it.
+
+`djoser deploy` writes one `deploy.sh` from `djoser.yaml`. Run as root on a fresh **Ubuntu 24.04 or 26.04** server, such as a DigitalOcean Droplet, it prepares that server for this one project and stops. It does not upload the code, write `.env`, run migrations or start the workers; at the end it prints those steps.
+
+```powershell
+djoser deploy                          # deploy.sh beside djoser.yaml
+djoser deploy --path D:\deploy\shop.sh # another place or name
+djoser deploy -y                       # replace an existing deploy.sh without asking
+```
+
+```bash
+ssh root@<server-ip> "mkdir -p /var/www"
+scp -r D:\Sites\shop root@<server-ip>:/var/www/shop      # the first time; later copy only what changed
+ssh root@<server-ip> "bash /var/www/shop/deploy.sh --domain shop.com --email you@shop.com"
+```
+
+| What it does | How |
+|---|---|
+| Checks | Root, Ubuntu 24.04 or 26.04, a real domain, the project folder; it stops before changing anything if the server already holds another Djoser project, or if the database servers in `djoser.yaml` changed |
+| User | `djoser` (or `--user`) with sudo and a password shown once, and root's SSH keys |
+| Server | Swap when there is none, `ufw` with only SSH, 80 and 443 open |
+| Packages | Everything from apt. PHP from packages.sury.org, Node.js from NodeSource, MySQL, MariaDB, PostgreSQL, MongoDB and Redis from their vendors; each repository is added only after its key's fingerprint matches the one inside the script |
+| PHP | The version, extensions and `ini` from `djoser.yaml`, an FPM pool that runs as the project's user |
+| Databases | Each server on `127.0.0.1`, with `settings:` from `djoser.yaml`, the project's database and a user with access to it only. The password is `DB_PASSWORD`, or a random one kept in `/home/djoser/.djoser/database` |
+| Site | Nginx serving the domain and `aliases`, HTTPS from Let's Encrypt through Certbot. If the certificate fails, usually because DNS does not point at the server yet, the script prints the command to run later |
+| Workers | A systemd unit per worker in `djoser.yaml`, enabled when `startup` is true, never started by the script |
+| Optional | `--composer` runs `composer install --no-dev`, `--build` runs `npm ci` and `npm run build` |
+
+Running it makes `deploy.sh` owned by root and readable only by root, so the app's user cannot change a file root runs. The top of `deploy.sh` is a block of variables you can edit, and each one is also a flag: `--path`, `--user`, `--domain`, `--db-password`, `--email`, `--swap`, `--composer`, `--build`; `bash deploy.sh --help` lists them. Running it again is safe: it keeps databases and passwords. Mail and S3 are yours: `mailpit` and `rustfs` in `djoser.yaml` are left out, so set `MAIL_*` and `AWS_*` in `.env`. A `!` script in `workers:` was written for Windows' cmd, so read it before starting it.
+
+If the project is in git, keep `deploy.sh` with LF line endings, or bash on the server will refuse it. Add this line to `.gitattributes`:
+
+```text
+*.sh text eol=lf
+```
+
 ## When something is wrong
 
 | Sign | What to do |
@@ -733,6 +773,7 @@ A stop with `djoser workers stop` lasts until the next `djoser up`; `--save` wri
 | Workers | Queues, the scheduler, Vite or any script, restarted when they stop |
 | Sites | Caddy, HTTPS on `*.localhost`, subdomain aliases |
 | Helpers | HeidiSQL, cloudflared |
+| Servers | `djoser deploy` writes a setup script for Ubuntu 24.04 and 26.04 (experimental) |
 
 ## This repository
 
