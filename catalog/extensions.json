@@ -188,24 +188,29 @@
       "needs": "",
       "builds": {
         "8.2": {
-          "version": "2.5.7",
-          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.2-nts-vs16-x64.zip",
-          "sha256": "62773cd1fddb523cf8c1dd336db83dc8d9ee2a63d60f85ac7c0a036512e76706"
+          "version": "2.5.8",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.8/php_mongodb-2.5.8-8.2-nts-vs16-x64.zip",
+          "sha256": "8c10521a934ca5f18b55edd7d149e7eede62d2d91eeeb6f9f2a2418d0ab0fee2"
         },
         "8.3": {
-          "version": "2.5.7",
-          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.3-nts-vs16-x64.zip",
-          "sha256": "bc3118895788eb97e36e70e393c680fa09892d0ef259506e5e1948424cc0c4dd"
+          "version": "2.5.8",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.8/php_mongodb-2.5.8-8.3-nts-vs16-x64.zip",
+          "sha256": "86e7e2de708be9141501323c7e8c2cfb7a38bc741dc9e0e1ed61e280719b87d3"
         },
         "8.4": {
-          "version": "2.5.7",
-          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.4-nts-vs17-x64.zip",
-          "sha256": "ec3a08a59624789e977e25e3be88bfc85ded69fdaa678b92af1a197989047e34"
+          "version": "2.5.8",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.8/php_mongodb-2.5.8-8.4-nts-vs17-x64.zip",
+          "sha256": "ad3fe772ae121791997fe51a327f106c239d32917037495c8097e73ac4696cef"
         },
         "8.5": {
-          "version": "2.5.7",
-          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.7/php_mongodb-2.5.7-8.5-nts-vs17-x64.zip",
-          "sha256": "84a6523453bb956d9ce7fc7d2bf86d15068744abdbc12b3e406194b934461e6c"
+          "version": "2.5.8",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.8/php_mongodb-2.5.8-8.5-nts-vs17-x64.zip",
+          "sha256": "d19c5de8cceba6ab0bb367dd2e786da8c732ba437294b49d20a43626e1af8b4a"
+        },
+        "8.6": {
+          "version": "2.5.8",
+          "url": "https://downloads.php.net/~windows/pecl/releases/mongodb/2.5.8/php_mongodb-2.5.8-8.6-nts-vs18-x64.zip",
+          "sha256": "d925e188819886171ef20e4d40920df225f203e0ff7e28695beb8ff72e697148"
         }
       }
     },
