@@ -172,6 +172,24 @@ workers:
 
 `djoser up` then starts them in the background and starts them again if they stop; `djoser down` stops them, with whatever they started, such as Vite under `npm run dev`. `queue: 2` runs two queue workers. Nothing runs until you list it, so a project copied to another machine sends no mail by itself.
 
+A worker that should start only when you ask takes `startup: false`:
+
+```yaml
+workers:
+  - queue: 2
+  - dev:
+      startup: false
+```
+
+```powershell
+djoser workers                  # every worker and its state
+djoser workers start dev
+djoser workers stop queue       # every queue worker, until the next djoser up
+djoser workers stop queue --save
+```
+
+A stop lasts until the next `djoser up`. `--save` also writes `startup: false` (or, with `start`, `true`) to `djoser.yaml`, so the file decides from the next `up`.
+
 ```powershell
 djoser status
 djoser logs queue -f
@@ -492,6 +510,8 @@ For Laravel, set `APP_URL` to that address and trust proxies, or styles and link
 | `djoser exec <project> <tool>` | Run a tool inside a project, from anywhere |
 | `djoser tool db` | Open HeidiSQL on the project's database |
 | `djoser run [name] [arguments]` | Run a script from `djoser.yaml`, or list them |
+| `djoser workers` | The project's workers and their state |
+| `djoser workers start\|stop\|restart <name> [--save]` | Control one worker until the next `up`; `--save` writes `startup:` to `djoser.yaml` |
 | `djoser logs [worker] [-n lines] [-f]` | A worker's log, or the list of workers |
 | `djoser jobs` / `jobs retry <id|all>` | Failed queue jobs of a Laravel project, and running them again |
 | `djoser db backup` / `restore` / `list` | Back up the project's databases, restore one after a typed yes, list the backups |
