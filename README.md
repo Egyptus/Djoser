@@ -768,7 +768,7 @@ If the project is in git, keep `deploy.sh` with LF line endings, or bash on the 
 | MongoDB | 7.0, 8.0, 8.2, 8.3, with mongosh |
 | Redis | 7.2, 7.4, 8.4, 8.10, from a community Windows build |
 | RustFS (S3) | 1.0, with a web console and a bucket per project |
-| Mailpit | 1.33, catches the mail your app sends |
+| Mailpit | 1.33, 1.34, catches the mail your app sends |
 | Backups | MySQL, MariaDB, PostgreSQL and MongoDB, outside Djoser's folder |
 | Workers | Queues, the scheduler, Vite or any script, restarted when they stop |
 | Sites | Caddy, HTTPS on `*.localhost`, subdomain aliases |
