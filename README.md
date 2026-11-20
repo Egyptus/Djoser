@@ -28,6 +28,7 @@ Per-project PHP and Node.js, local HTTPS sites, databases, S3, mail and backgrou
 - [Databases and backups](#databases-and-backups)
 - [Scripts and workers](#scripts-and-workers)
 - [djoser deploy (experimental)](#djoser-deploy-experimental)
+- [Use Djoser with an AI agent](#use-djoser-with-an-ai-agent)
 - [When something is wrong](#when-something-is-wrong)
 - [What runs today](#what-runs-today)
 - [This repository](#this-repository)
@@ -741,6 +742,38 @@ If the project is in git, keep `deploy.sh` with LF line endings, or bash on the 
 *.sh text eol=lf
 ```
 
+## Use Djoser with an AI agent
+
+[`skills/djoser`](skills/djoser) is a skill in the open Agent Skills format: a `SKILL.md` and two reference files that tell a coding agent how to work with Djoser. It says to run PHP, Composer and Artisan through Djoser, to change services in `djoser.yaml` and then run `djoser up`, which commands need you at the terminal, and what to ask before. Agents that read skills, such as Claude Code, Codex, Cursor, GitHub Copilot and Gemini CLI, load it when a project has `djoser.yaml`.
+
+Install it into a project from its folder. `npx` comes with Node.js (`djoser install node 22`); no account is needed:
+
+```powershell
+djoser npx skills add Egyptus/Djoser --skill djoser
+```
+
+It asks which agents to install for; `-a claude-code -a codex` chooses them, `-g` installs for your user instead of one project, and `-y` asks nothing. Later, `djoser npx skills update` brings the newest copy.
+
+Without `npx`, paste this to the agent in the project:
+
+```text
+Install the Djoser skill in this project: download SKILL.md, references/commands.md and
+references/djoser-yaml.md from https://raw.githubusercontent.com/Egyptus/Djoser/main/skills/djoser/
+into this project's skills folder (.claude/skills/djoser/ for Claude Code, .agents/skills/djoser/
+for other agents), keeping the references folder, then read SKILL.md and follow it.
+```
+
+Or download them yourself in PowerShell, from the project's folder:
+
+```powershell
+$base = "https://raw.githubusercontent.com/Egyptus/Djoser/main/skills/djoser"
+$dest = ".agents\skills\djoser"   # .claude\skills\djoser for Claude Code
+New-Item -ItemType Directory -Force "$dest\references" | Out-Null
+foreach ($file in "SKILL.md", "references/commands.md", "references/djoser-yaml.md") {
+    Invoke-WebRequest "$base/$file" -OutFile (Join-Path $dest $file)
+}
+```
+
 ## When something is wrong
 
 | Sign | What to do |
@@ -777,7 +810,7 @@ If the project is in git, keep `deploy.sh` with LF line endings, or bash on the 
 
 ## This repository
 
-It holds the installer in [Releases](https://github.com/Egyptus/Djoser/releases) and the tables in [`catalog/`](catalog), which list the versions Djoser may download and the SHA-256 of each file. Djoser reads them so that new versions can be added without a new release.
+It holds the installer in [Releases](https://github.com/Egyptus/Djoser/releases) and the tables in [`catalog/`](catalog), which list the versions Djoser may download and the SHA-256 of each file. Djoser reads them so that new versions can be added without a new release. [`skills/djoser`](skills/djoser) is the [agent skill](#use-djoser-with-an-ai-agent).
 
 The tables are written by the scripts in [`scripts/`](scripts), which need PowerShell 7:
 
